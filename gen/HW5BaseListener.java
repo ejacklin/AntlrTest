@@ -51,18 +51,6 @@ public class HW5BaseListener implements HW5Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVar_declaration(HW5Parser.Var_declarationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitVar_declaration(HW5Parser.Var_declarationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterType_specifier(HW5Parser.Type_specifierContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -70,6 +58,18 @@ public class HW5BaseListener implements HW5Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitType_specifier(HW5Parser.Type_specifierContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterVar_declaration(HW5Parser.Var_declarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVar_declaration(HW5Parser.Var_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

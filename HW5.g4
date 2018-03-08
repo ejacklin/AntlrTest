@@ -7,8 +7,8 @@ grammar HW5;
 program             :  declaration_list;
 declaration_list    :  declaration_list  declaration  |  declaration;
 declaration         :  var_declaration  |  fun_declaration;
+type_specifier      :  VOID | INTEGER;
 var_declaration     :  type_specifier  ID SEMICOLON  |  type_specifier  ID LB NUM RB SEMICOLON;
-type_specifier      :  INT  |  VOID;
 fun_declaration     :  type_specifier  ID  LPAREN  params  RPAREN  compound_stmt;
 params              :  param_list  |  VOID;
 param_list          :  param_list  COMMA  param  |  param;
@@ -21,7 +21,7 @@ expression_stmt     :  expression  SEMICOLON  |  SEMICOLON;
 selection_stmt      :  IF LPAREN  expression  RPAREN  statement  |  IF LPAREN  expression  RPAREN  statement  ELSE  statement;
 iteration_stmt      :  WHILE LPAREN  expression  RPAREN  statement;
 return_stmt         :  RETURN SEMICOLON  |  RETURN  expression SEMICOLON;
-expression          :  var  EQUALS  expression  |  simple_expression;
+expression          :  var  ASSIGN  expression  |  simple_expression;
 var                 :  ID  |  ID LB  expression  RB;
 simple_expression   :  additive_expression  relop  additive_expression  |  additive_expression;
 relop               :  LTE | LT | GT | GTE | EQ | NOTEQ;
@@ -40,14 +40,13 @@ arg_list            :  arg_list  COMMA  expression  |  expression;
 /*
  * Lexer Rules
 */
-fragment DIGIT : [0-9] ;
+fragment DIGIT : [0-9];
 fragment LOWERCASE : [a-z];
 fragment UPPERCASE : [A-Z];
 fragment LETTER : [A-Za-z];
 NUM : (ADD|SUB)?DIGIT+ ([.,] DIGIT+)?;
 ID : LETTER+;             // match lower_case identifiers
 WS : [ \t\r\n]+ -> skip; // skip spaces, tabs, newlines
-
 LCOMM : '/*';
 RCOMM : '*/';
 COMMENT : LCOMM .+? RCOMM -> skip;
@@ -64,7 +63,7 @@ LT: '<';
 GT: '>';
 GTE:'>=';
 EQ: '==';
-EQUALS: '=';
+ASSIGN: '=';
 NOTEQ: '!=';
 ADD: '+';
 SUB: '-';
@@ -74,5 +73,5 @@ IF: 'if';
 ELSE: 'else';
 WHILE: 'while';
 RETURN: 'return';
-INT: 'int';
+INTEGER: 'int';
 VOID: 'void';

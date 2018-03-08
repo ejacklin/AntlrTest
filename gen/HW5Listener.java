@@ -37,16 +37,6 @@ public interface HW5Listener extends ParseTreeListener {
 	 */
 	void exitDeclaration(HW5Parser.DeclarationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link HW5Parser#var_declaration}.
-	 * @param ctx the parse tree
-	 */
-	void enterVar_declaration(HW5Parser.Var_declarationContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link HW5Parser#var_declaration}.
-	 * @param ctx the parse tree
-	 */
-	void exitVar_declaration(HW5Parser.Var_declarationContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link HW5Parser#type_specifier}.
 	 * @param ctx the parse tree
 	 */
@@ -56,6 +46,16 @@ public interface HW5Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitType_specifier(HW5Parser.Type_specifierContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link HW5Parser#var_declaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterVar_declaration(HW5Parser.Var_declarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link HW5Parser#var_declaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitVar_declaration(HW5Parser.Var_declarationContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link HW5Parser#fun_declaration}.
 	 * @param ctx the parse tree
