@@ -19,10 +19,10 @@ public class HW5Parser extends Parser {
 		NUM=1, ID=2, WS=3, LCOMM=4, RCOMM=5, COMMENT=6, LB=7, RB=8, LPAREN=9, 
 		RPAREN=10, SEMICOLON=11, COMMA=12, LCB=13, RCB=14, LTE=15, LT=16, GT=17, 
 		GTE=18, EQ=19, ASSIGN=20, NOTEQ=21, ADD=22, SUB=23, MULT=24, DIV=25, IF=26, 
-		ELSE=27, WHILE=28, RETURN=29, INTEGER=30, VOID=31;
+		ELSE=27, WHILE=28, RETURN=29, INT=30, VOID=31;
 	public static final int
-		RULE_program = 0, RULE_declaration_list = 1, RULE_declaration = 2, RULE_type_specifier = 3, 
-		RULE_var_declaration = 4, RULE_fun_declaration = 5, RULE_params = 6, RULE_param_list = 7, 
+		RULE_program = 0, RULE_declaration_list = 1, RULE_declaration = 2, RULE_var_declaration = 3, 
+		RULE_type_specifier = 4, RULE_fun_declaration = 5, RULE_params = 6, RULE_param_list = 7, 
 		RULE_param = 8, RULE_compound_stmt = 9, RULE_local_declarations = 10, 
 		RULE_statement_list = 11, RULE_statement = 12, RULE_expression_stmt = 13, 
 		RULE_selection_stmt = 14, RULE_iteration_stmt = 15, RULE_return_stmt = 16, 
@@ -30,7 +30,7 @@ public class HW5Parser extends Parser {
 		RULE_additive_expression = 21, RULE_addop = 22, RULE_term = 23, RULE_mulop = 24, 
 		RULE_factor = 25, RULE_call = 26, RULE_args = 27, RULE_arg_list = 28;
 	public static final String[] ruleNames = {
-		"program", "declaration_list", "declaration", "type_specifier", "var_declaration", 
+		"program", "declaration_list", "declaration", "var_declaration", "type_specifier", 
 		"fun_declaration", "params", "param_list", "param", "compound_stmt", "local_declarations", 
 		"statement_list", "statement", "expression_stmt", "selection_stmt", "iteration_stmt", 
 		"return_stmt", "expression", "var", "simple_expression", "relop", "additive_expression", 
@@ -47,7 +47,7 @@ public class HW5Parser extends Parser {
 		null, "NUM", "ID", "WS", "LCOMM", "RCOMM", "COMMENT", "LB", "RB", "LPAREN", 
 		"RPAREN", "SEMICOLON", "COMMA", "LCB", "RCB", "LTE", "LT", "GT", "GTE", 
 		"EQ", "ASSIGN", "NOTEQ", "ADD", "SUB", "MULT", "DIV", "IF", "ELSE", "WHILE", 
-		"RETURN", "INTEGER", "VOID"
+		"RETURN", "INT", "VOID"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -268,53 +268,6 @@ public class HW5Parser extends Parser {
 		return _localctx;
 	}
 
-	public static class Type_specifierContext extends ParserRuleContext {
-		public TerminalNode VOID() { return getToken(HW5Parser.VOID, 0); }
-		public TerminalNode INTEGER() { return getToken(HW5Parser.INTEGER, 0); }
-		public Type_specifierContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_type_specifier; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof HW5Listener ) ((HW5Listener)listener).enterType_specifier(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof HW5Listener ) ((HW5Listener)listener).exitType_specifier(this);
-		}
-	}
-
-	public final Type_specifierContext type_specifier() throws RecognitionException {
-		Type_specifierContext _localctx = new Type_specifierContext(_ctx, getState());
-		enterRule(_localctx, 6, RULE_type_specifier);
-		int _la;
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(74);
-			_la = _input.LA(1);
-			if ( !(_la==INTEGER || _la==VOID) ) {
-			_errHandler.recoverInline(this);
-			}
-			else {
-				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-				_errHandler.reportMatch(this);
-				consume();
-			}
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
 	public static class Var_declarationContext extends ParserRuleContext {
 		public Type_specifierContext type_specifier() {
 			return getRuleContext(Type_specifierContext.class,0);
@@ -340,39 +293,86 @@ public class HW5Parser extends Parser {
 
 	public final Var_declarationContext var_declaration() throws RecognitionException {
 		Var_declarationContext _localctx = new Var_declarationContext(_ctx, getState());
-		enterRule(_localctx, 8, RULE_var_declaration);
+		enterRule(_localctx, 6, RULE_var_declaration);
 		try {
-			setState(87);
+			setState(85);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(76);
+				setState(74);
 				type_specifier();
-				setState(77);
+				setState(75);
 				match(ID);
-				setState(78);
+				setState(76);
 				match(SEMICOLON);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(80);
+				setState(78);
 				type_specifier();
-				setState(81);
+				setState(79);
 				match(ID);
-				setState(82);
+				setState(80);
 				match(LB);
-				setState(83);
+				setState(81);
 				match(NUM);
-				setState(84);
+				setState(82);
 				match(RB);
-				setState(85);
+				setState(83);
 				match(SEMICOLON);
 				}
 				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Type_specifierContext extends ParserRuleContext {
+		public TerminalNode INT() { return getToken(HW5Parser.INT, 0); }
+		public TerminalNode VOID() { return getToken(HW5Parser.VOID, 0); }
+		public Type_specifierContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_type_specifier; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof HW5Listener ) ((HW5Listener)listener).enterType_specifier(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof HW5Listener ) ((HW5Listener)listener).exitType_specifier(this);
+		}
+	}
+
+	public final Type_specifierContext type_specifier() throws RecognitionException {
+		Type_specifierContext _localctx = new Type_specifierContext(_ctx, getState());
+		enterRule(_localctx, 8, RULE_type_specifier);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(87);
+			_la = _input.LA(1);
+			if ( !(_la==INT || _la==VOID) ) {
+			_errHandler.recoverInline(this);
+			}
+			else {
+				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+				_errHandler.reportMatch(this);
+				consume();
+			}
 			}
 		}
 		catch (RecognitionException re) {
@@ -2009,8 +2009,8 @@ public class HW5Parser extends Parser {
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
 		"\4\32\t\32\4\33\t\33\4\34\t\34\4\35\t\35\4\36\t\36\3\2\3\2\3\3\3\3\3\3"+
-		"\3\3\3\3\7\3D\n\3\f\3\16\3G\13\3\3\4\3\4\5\4K\n\4\3\5\3\5\3\6\3\6\3\6"+
-		"\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\5\6Z\n\6\3\7\3\7\3\7\3\7\3\7\3\7\3\7"+
+		"\3\3\3\3\7\3D\n\3\f\3\16\3G\13\3\3\4\3\4\5\4K\n\4\3\5\3\5\3\5\3\5\3\5"+
+		"\3\5\3\5\3\5\3\5\3\5\3\5\5\5X\n\5\3\6\3\6\3\7\3\7\3\7\3\7\3\7\3\7\3\7"+
 		"\3\b\3\b\5\be\n\b\3\t\3\t\3\t\3\t\3\t\3\t\7\tm\n\t\f\t\16\tp\13\t\3\n"+
 		"\3\n\3\n\3\n\3\n\3\n\3\n\3\n\5\nz\n\n\3\13\3\13\3\13\3\13\3\13\3\f\3\f"+
 		"\3\f\7\f\u0084\n\f\f\f\16\f\u0087\13\f\3\r\3\r\3\r\7\r\u008c\n\r\f\r\16"+
@@ -2026,7 +2026,7 @@ public class HW5Parser extends Parser {
 		"\3\34\3\35\3\35\5\35\u0100\n\35\3\36\3\36\3\36\3\36\3\36\3\36\7\36\u0108"+
 		"\n\36\f\36\16\36\u010b\13\36\3\36\2\t\4\20\26\30,\60:\37\2\4\6\b\n\f\16"+
 		"\20\22\24\26\30\32\34\36 \"$&(*,.\60\62\64\668:\2\6\3\2 !\4\2\21\25\27"+
-		"\27\3\2\30\31\3\2\32\33\2\u0108\2<\3\2\2\2\4>\3\2\2\2\6J\3\2\2\2\bL\3"+
+		"\27\3\2\30\31\3\2\32\33\2\u0108\2<\3\2\2\2\4>\3\2\2\2\6J\3\2\2\2\bW\3"+
 		"\2\2\2\nY\3\2\2\2\f[\3\2\2\2\16d\3\2\2\2\20f\3\2\2\2\22y\3\2\2\2\24{\3"+
 		"\2\2\2\26\u0080\3\2\2\2\30\u0088\3\2\2\2\32\u0095\3\2\2\2\34\u009b\3\2"+
 		"\2\2\36\u00ab\3\2\2\2 \u00ad\3\2\2\2\"\u00b9\3\2\2\2$\u00c0\3\2\2\2&\u00c8"+
@@ -2034,17 +2034,17 @@ public class HW5Parser extends Parser {
 		"\u00e1\3\2\2\2\62\u00ed\3\2\2\2\64\u00f6\3\2\2\2\66\u00f8\3\2\2\28\u00ff"+
 		"\3\2\2\2:\u0101\3\2\2\2<=\5\4\3\2=\3\3\2\2\2>?\b\3\1\2?@\5\6\4\2@E\3\2"+
 		"\2\2AB\f\4\2\2BD\5\6\4\2CA\3\2\2\2DG\3\2\2\2EC\3\2\2\2EF\3\2\2\2F\5\3"+
-		"\2\2\2GE\3\2\2\2HK\5\n\6\2IK\5\f\7\2JH\3\2\2\2JI\3\2\2\2K\7\3\2\2\2LM"+
-		"\t\2\2\2M\t\3\2\2\2NO\5\b\5\2OP\7\4\2\2PQ\7\r\2\2QZ\3\2\2\2RS\5\b\5\2"+
-		"ST\7\4\2\2TU\7\t\2\2UV\7\3\2\2VW\7\n\2\2WX\7\r\2\2XZ\3\2\2\2YN\3\2\2\2"+
-		"YR\3\2\2\2Z\13\3\2\2\2[\\\5\b\5\2\\]\7\4\2\2]^\7\13\2\2^_\5\16\b\2_`\7"+
+		"\2\2\2GE\3\2\2\2HK\5\b\5\2IK\5\f\7\2JH\3\2\2\2JI\3\2\2\2K\7\3\2\2\2LM"+
+		"\5\n\6\2MN\7\4\2\2NO\7\r\2\2OX\3\2\2\2PQ\5\n\6\2QR\7\4\2\2RS\7\t\2\2S"+
+		"T\7\3\2\2TU\7\n\2\2UV\7\r\2\2VX\3\2\2\2WL\3\2\2\2WP\3\2\2\2X\t\3\2\2\2"+
+		"YZ\t\2\2\2Z\13\3\2\2\2[\\\5\n\6\2\\]\7\4\2\2]^\7\13\2\2^_\5\16\b\2_`\7"+
 		"\f\2\2`a\5\24\13\2a\r\3\2\2\2be\5\20\t\2ce\7!\2\2db\3\2\2\2dc\3\2\2\2"+
 		"e\17\3\2\2\2fg\b\t\1\2gh\5\22\n\2hn\3\2\2\2ij\f\4\2\2jk\7\16\2\2km\5\22"+
 		"\n\2li\3\2\2\2mp\3\2\2\2nl\3\2\2\2no\3\2\2\2o\21\3\2\2\2pn\3\2\2\2qr\5"+
-		"\b\5\2rs\7\4\2\2sz\3\2\2\2tu\5\b\5\2uv\7\4\2\2vw\7\t\2\2wx\7\n\2\2xz\3"+
+		"\n\6\2rs\7\4\2\2sz\3\2\2\2tu\5\n\6\2uv\7\4\2\2vw\7\t\2\2wx\7\n\2\2xz\3"+
 		"\2\2\2yq\3\2\2\2yt\3\2\2\2z\23\3\2\2\2{|\7\17\2\2|}\5\26\f\2}~\5\30\r"+
 		"\2~\177\7\20\2\2\177\25\3\2\2\2\u0080\u0085\b\f\1\2\u0081\u0082\f\4\2"+
-		"\2\u0082\u0084\5\n\6\2\u0083\u0081\3\2\2\2\u0084\u0087\3\2\2\2\u0085\u0083"+
+		"\2\u0082\u0084\5\b\5\2\u0083\u0081\3\2\2\2\u0084\u0087\3\2\2\2\u0085\u0083"+
 		"\3\2\2\2\u0085\u0086\3\2\2\2\u0086\27\3\2\2\2\u0087\u0085\3\2\2\2\u0088"+
 		"\u008d\b\r\1\2\u0089\u008a\f\4\2\2\u008a\u008c\5\32\16\2\u008b\u0089\3"+
 		"\2\2\2\u008c\u008f\3\2\2\2\u008d\u008b\3\2\2\2\u008d\u008e\3\2\2\2\u008e"+
@@ -2087,7 +2087,7 @@ public class HW5Parser extends Parser {
 		"\2\u00ff\u00fe\3\2\2\2\u01009\3\2\2\2\u0101\u0102\b\36\1\2\u0102\u0103"+
 		"\5$\23\2\u0103\u0109\3\2\2\2\u0104\u0105\f\4\2\2\u0105\u0106\7\16\2\2"+
 		"\u0106\u0108\5$\23\2\u0107\u0104\3\2\2\2\u0108\u010b\3\2\2\2\u0109\u0107"+
-		"\3\2\2\2\u0109\u010a\3\2\2\2\u010a;\3\2\2\2\u010b\u0109\3\2\2\2\26EJY"+
+		"\3\2\2\2\u0109\u010a\3\2\2\2\u010a;\3\2\2\2\u010b\u0109\3\2\2\2\26EJW"+
 		"dny\u0085\u008d\u0095\u009b\u00ab\u00b9\u00c0\u00c8\u00cf\u00dc\u00ea"+
 		"\u00f6\u00ff\u0109";
 	public static final ATN _ATN =
