@@ -7,8 +7,8 @@ grammar HW5;
 program             :  declaration_list;
 declaration_list    :  declaration_list  declaration  |  declaration;
 declaration         :  var_declaration  |  fun_declaration;
+type_specifier      :  'int';
 var_declaration     :  type_specifier  ID SEMICOLON  |  type_specifier  ID LB NUM RB SEMICOLON;
-type_specifier      :  INT | VOID;
 fun_declaration     :  type_specifier  ID  LPAREN  params  RPAREN  compound_stmt;
 params              :  param_list  |  VOID;
 param_list          :  param_list  COMMA  param  |  param;
@@ -40,11 +40,6 @@ arg_list            :  arg_list  COMMA  expression  |  expression;
 /*
  * Lexer Rules
 */
-fragment DIGIT : [0-9];
-fragment LETTER : [A-Za-z];
-//NUM : (ADD|SUB)?DIGIT+ ([.,] DIGIT+)?;
-NUM: DIGIT DIGIT*;
-ID : LETTER LETTER*;             // match lower_case identifiers
 WS : [ \r\t\n]+->skip; // skip spaces, tabs, newlines
 LCOMM : '/*';
 RCOMM : '*/';
@@ -74,3 +69,9 @@ WHILE: 'while';
 RETURN: 'return';
 INT: 'int';
 VOID: 'void';
+
+fragment DIGIT : [0-9];
+fragment LETTER : [A-Za-z];
+//NUM : (ADD|SUB)?DIGIT+ ([.,] DIGIT+)?;
+NUM: DIGIT DIGIT*;
+ID : LETTER LETTER*;             // match lower_case identifiers
